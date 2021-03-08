@@ -1,5 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer')
+const generateMD = require('./utils/generateMarkdown')
+const fs = require('fs');
+const { renderLicenseSection } = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = ['What is the project title?',
@@ -60,7 +63,7 @@ inquirer
 ])
 .then(answer => {
     console.log('Complete');
-    writeToFile('testfile', answer)
+    writeToFile('READme.md', answer)
     return answer
 })
 .catch((error) => {
@@ -73,18 +76,12 @@ get_answers()
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    var text = `Auto Generated Readme
-    Project Title: ${data.project_title}
-    Description: ${data.description}
-    Installation instructions: ${data.install_instructions}
-    General usage instructions: ${data.usage_info}
-    Guidelines to contribute; ${data.contribution_guidelines}
-    Instructions to test: ${data.testing_instructions}
+
+    fileName = 'READme.md'
+    text = generateMD.generateMarkdown(data)
     
-    Additional questions and/or comments? Contact me below
-    Github URL: github.com/${data.github_username}
-    Email: ${data.email}`
-    console.log(text);
+    fs.writeFile(fileName, text, () => {})
+    renderLicenseSection()
 }
 
 // TODO: Create a function to initialize app
