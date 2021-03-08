@@ -2,7 +2,8 @@
 const inquirer = require('inquirer')
 const generateMD = require('./utils/generateMarkdown')
 const fs = require('fs');
-const { renderLicenseSection } = require('./utils/generateMarkdown');
+const { renderLicenseSection, table_contents } = require('./utils/generateMarkdown');
+const prepend = require('prepend')
 
 // TODO: Create an array of questions for user input
 const questions = ['What is the project title?',
@@ -77,11 +78,12 @@ get_answers()
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
 
-    fileName = 'READme.md'
+    fileName = 'autoREADme.md'
     text = generateMD.generateMarkdown(data)
     
     fs.writeFile(fileName, text, () => {})
     renderLicenseSection()
+    table_contents()
 }
 
 // TODO: Create a function to initialize app
@@ -89,5 +91,8 @@ function init() {}
 
 // Function call to initialize app
 init();
+
+// Function to add table of contents
+
 
 
