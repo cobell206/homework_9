@@ -78,7 +78,9 @@ function table_contents() {
   [General usage instructions](#General-usage-instructions)\n
   [Guidelines to contribute](#Guidelines-to-contribute)\n
   [Instructions to test](#Instructions-to-test)\n
-  [Contact](#Contact)\n\n\n\n`
+  [Contact](#Contact)\n
+  ## Demo!\n
+  ![Demo Video](demo.gif)\n\n\n\n`
   prepend('autoREADme.md', text, () => {})
 }
 
